@@ -5,19 +5,20 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  // Fetch to-dos from backend
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/todos`
-        );
-        setTodos(response.data);
-      } catch (error) {
-        console.error("Error fetching to-dos:", error);
-      }
-    };
+  // Function to fetch todos
+  const fetchTodos = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/todos`
+      );
+      setTodos(response.data);
+    } catch (error) {
+      console.error("Error fetching to-dos:", error);
+    }
+  };
 
+  // Fetch todos when component mounts
+  useEffect(() => {
     fetchTodos();
   }, []);
 
@@ -26,7 +27,7 @@ const TodoList = () => {
     if (!newTask.trim()) return;
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/todos`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/todos`,
         {
           task: newTask,
           completed: false,
@@ -43,9 +44,7 @@ const TodoList = () => {
   // Delete a to-do
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/api/todos/${id}`
-      );
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
     } catch (error) {
       console.error("Error deleting to-do:", error);
