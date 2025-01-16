@@ -34,7 +34,10 @@ const WeeklyCalendar = ({ onClose }) => {
 
   // Add a new event
   const addEvent = async () => {
-    if (!selectedDay || !newEvent.time || !newEvent.description) return;
+    if (!selectedDay || !newEvent.time || !newEvent.description) {
+      alert("Please fill out all fields!");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -45,7 +48,8 @@ const WeeklyCalendar = ({ onClose }) => {
         ...prev,
         [selectedDay]: response.data.events,
       }));
-      setNewEvent({ time: "", description: "" });
+      setNewEvent({ time: "", description: "" }); // Reset the form
+      setSelectedDay(null); // Close the form
     } catch (error) {
       console.error("Error adding event:", error);
     }
