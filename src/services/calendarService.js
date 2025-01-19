@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/calendar";
+const API_URL = import.meta.env.VITE_BACKEND_URL + "/api/calendar";
 
 export const getWeeklyEvents = () => axios.get(API_URL);
 export const addWeeklyEvent = (day, event) =>
