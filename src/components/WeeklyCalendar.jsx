@@ -19,26 +19,26 @@ const WeeklyCalendar = ({ onBack }) => {
   const [events, setEvents] = useState({});
   const [selectedDay, setSelectedDay] = useState(null);
   const [newEvent, setNewEvent] = useState({ time: "", description: "" });
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  const [error, setError] = useState("");
 
   const fetchEvents = async () => {
     try {
       const response = await getWeeklyEvents();
       setEvents(response.data);
-      setError(null);
+      setError("");
     } catch (error) {
       setError("Failed to fetch events");
       console.error("Error fetching events:", error);
     }
   };
 
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   const handleAddEvent = async () => {
-    if (!selectedDay || !newEvent.time || !newEvent.description) {
-      alert("Please fill out all fields!");
+    if (!selectedDay || !newEvent.time || !newEvent.description.trim()) {
+      setError("Please fill out all fields!");
       return;
     }
 
@@ -50,7 +50,7 @@ const WeeklyCalendar = ({ onBack }) => {
       }));
       setNewEvent({ time: "", description: "" });
       setSelectedDay(null);
-      setError(null);
+      setError("");
     } catch (error) {
       setError("Failed to add event");
       console.error("Error adding event:", error);
@@ -64,7 +64,7 @@ const WeeklyCalendar = ({ onBack }) => {
         ...prev,
         [day]: response.data.events,
       }));
-      setError(null);
+      setError("");
     } catch (error) {
       setError("Failed to remove event");
       console.error("Error removing event:", error);
