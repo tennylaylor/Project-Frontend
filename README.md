@@ -13,8 +13,11 @@ The Interactive Fridge is a fun and practical web application that combines tool
 Key Features
 1.To-Do List:
 `Add, update, and delete tasks.
+
 `Organize tasks with priority levels (low, medium, high).
+
 `Tasks are stored in the backend for persistence.
+
 
 2.Weekly Calendar:
 `Plan your week by adding events to specific days.
