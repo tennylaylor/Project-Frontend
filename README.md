@@ -61,6 +61,7 @@ Setup Instructions
 
 1. Clone the Repository
    git clone https://github.com/tennylaylor/Project-Frontend.git
+   
    git clone https://github.com/tennylaylor/Project_Backend.git
 
 cd Family_Fridge/Frontend
