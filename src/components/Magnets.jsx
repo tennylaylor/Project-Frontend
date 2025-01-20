@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const Magnets = ({ onBack }) => {
   const [magnets, setMagnets] = useState([
@@ -8,82 +7,72 @@ const Magnets = ({ onBack }) => {
     { id: 3, text: "Love", x: 150, y: 200 },
   ]);
   const [newMagnetText, setNewMagnetText] = useState("");
-  const [draggingMagnet, setDraggingMagnet] = useState(null);
-  const [error, setError] = useState("");
+  const [draggingMagnetId, setDraggingMagnetId] = useState(null);
 
-  const handleDragStart = (magnet) => {
-    try {
-      setDraggingMagnet(magnet);
-      setError("");
-    } catch (error) {
-      setError("Failed to start dragging");
-      console.error("Error starting drag:", error);
-    }
+  const handleDragStart = (e, magnetId) => {
+    setDraggingMagnetId(magnetId);
+    e.dataTransfer.setData("text/plain", magnetId); // Required for drag-and-drop
+    e.dataTransfer.effectAllowed = "move";
   };
 
-  const handleDrag = (e, magnetId) => {
-    if (!draggingMagnet) return;
-
-    try {
-      const newMagnets = magnets.map((m) => {
-        if (m.id === magnetId) {
-          return {
-            ...m,
-            x: e.clientX,
-            y: e.clientY,
-          };
-        }
-        return m;
-      });
-
-      setMagnets(newMagnets);
-      setError("");
-    } catch (error) {
-      setError("Failed to drag magnet");
-      console.error("Error dragging magnet:", error);
-    }
+  const handleDragOver = (e) => {
+    e.preventDefault(); // Allow dropping
+    e.dataTransfer.dropEffect = "move";
   };
 
-  const handleDragEnd = () => {
-    try {
-      setDraggingMagnet(null);
-      setError("");
-    } catch (error) {
-      setError("Failed to end dragging");
-      console.error("Error ending drag:", error);
-    }
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    if (draggingMagnetId === null) return;
+
+    const boardRect = e.currentTarget.getBoundingClientRect(); // Get the bounding rectangle of the board
+    const dropX = e.clientX - boardRect.left; // Adjust X to be relative to the board
+    const dropY = e.clientY - boardRect.top; // Ad
+
+    setMagnets((prevMagnets) =>
+      prevMagnets.map((magnet) =>
+        magnet.id === draggingMagnetId
+          ? { ...magnet, x: dropX, y: dropY }
+          : magnet
+      )
+    );
+
+    setDraggingMagnetId(null);
   };
 
   const addMagnet = () => {
     if (!newMagnetText.trim()) {
-      setError("Please enter magnet text");
+      alert("Please enter magnet text");
       return;
     }
 
-    try {
-      const newMagnet = {
-        id: Date.now(),
-        text: newMagnetText.trim(),
-        x: Math.random() * 300,
-        y: Math.random() * 300,
-      };
+    const newMagnet = {
+      id: Date.now(),
+      text: newMagnetText.trim(),
+      x: Math.random() * 300,
+      y: Math.random() * 300,
+    };
 
-      setMagnets([...magnets, newMagnet]);
-      setNewMagnetText("");
-      setError("");
-    } catch (error) {
-      setError("Failed to add magnet");
-      console.error("Error adding magnet:", error);
-    }
+    setMagnets([...magnets, newMagnet]);
+    setNewMagnetText("");
   };
 
   return (
-    <div className="magnet-board">
+    <div
+      className="magnet-board"
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      style={{
+        position: "relative",
+        width: "95%",
+        height: "100%",
+        border: "1px solid black",
+        overflow: "hidden", // Prevent magnets from being dropped outside
+      }}
+    >
       <button onClick={onBack} className="mb-4">
         Back to Home
       </button>
-      {error && <div className="error-message">{error}</div>}
-
       <div className="magnet-controls">
         <input
           type="text"
@@ -93,19 +82,22 @@ const Magnets = ({ onBack }) => {
         />
         <button onClick={addMagnet}>Add Magnet</button>
       </div>
-
       <div className="magnet-area">
         {magnets.map((magnet) => (
           <div
             key={magnet.id}
             draggable
-            onDragStart={() => handleDragStart(magnet)}
-            onDrag={(e) => handleDrag(e, magnet.id)}
-            onDragEnd={handleDragEnd}
+            onDragStart={(e) => handleDragStart(e, magnet.id)}
             className="magnet"
             style={{
-              left: magnet.x,
-              top: magnet.y,
+              position: "absolute",
+              left: `${magnet.x}px`,
+              top: `${magnet.y}px`,
+              cursor: "grab",
+              backgroundColor: "lightblue",
+              padding: "5px",
+              borderRadius: "5px",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
             }}
           >
             {magnet.text}
@@ -115,4 +107,5 @@ const Magnets = ({ onBack }) => {
     </div>
   );
 };
+
 export default Magnets;
