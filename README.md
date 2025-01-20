@@ -15,31 +15,21 @@ The Interactive Fridge is a fun and practical web application that combines tool
 
 Key Features
 1.To-Do List:
-
 `Add, update, and delete tasks.
-
  `Organize tasks with priority levels (low, medium, high).
- 
 `Tasks are stored in the backend for persistence.
 
 2.Weekly Calendar:
-
 `Plan your week by adding events to specific days.
-
  `View, update, and delete events as needed.
- 
 `Events are grouped by day for easy management.
 
 3.Photo Gallery:
-
 `Upload and display photos.
-
  `Add captions and delete photos.
- 
 `Uses file upload handling for a simple photo manager.
 
 4.Fridge Home:
-
 `A central hub for navigation between the app's features.
  `Styled like a virtual fridge for a fun and creative user experience.
 
@@ -47,26 +37,19 @@ How It Works
 
 Frontend:
 `React is used to build the user interface.
-
  `React Hooks manage state efficiently across components.
- 
 `CSS provides a polished, responsive design with visually appealing styles.
 
 Backend:
 `Node.js and Express power the server.
-
  `MongoDB stores data for tasks and events.
- 
 `Axios is used for communication between the frontend and backend.
 
 APIs:
 1.To-Do List API:
 GET /api/todos: Fetch all tasks.
-
 POST /api/todos: Add a new task.
-
 PUT /api/todos/:id: Update a task.
-
 DELETE /api/todos/:id: Delete a task.
 
 2.Weekly Calendar API:
@@ -77,9 +60,7 @@ DELETE /api/calendar/:day/:eventId: Delete an event.
 Setup Instructions
 
 1. Clone the Repository
-   
    git clone https://github.com/tennylaylor/Project-Frontend.git
-   
    git clone https://github.com/tennylaylor/Project_Backend.git
 
 cd Family_Fridge/Frontend
@@ -95,7 +76,6 @@ cd Family_Fridge/Backend
 
 3. Configure Environment Variables
    Create a .env file in the backend directory.
-   
    MONGO_URI=mongodb+srv://Tennylaylor:<****\*\*****>>@elantris.r5x1a.mongodb.net/?retryWrites=true&w=majority
    VITE_BACKEND_URL=http://localhost:5000
 
