@@ -17,7 +17,7 @@ Key Features
 1.To-Do List:
 `Add, update, and delete tasks.
  `Organize tasks with priority levels (low, medium, high).
-`Tasks are stored in the backend for persistence.
+`Tasks are stored in the backend for consistence
 
 2.Weekly Calendar:
 `Plan your week by adding events to specific days.
@@ -76,7 +76,7 @@ cd Family_Fridge/Backend
 
 3. Configure Environment Variables
    Create a .env file in the backend directory.
-   MONGO_URI=mongodb+srv://Tennylaylor:<****\*\*****>>@elantris.r5x1a.mongodb.net/?retryWrites=true&w=majority
+   MONGO_URI=mongodb+srv://Tennylaylor:<\***\*\*\*\*\***>>@elantris.r5x1a.mongodb.net/?retryWrites=true&w=majority
    VITE_BACKEND_URL=http://localhost:5000
 
 # Server Port

@@ -8,8 +8,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #e8ecf3;
-  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-color: #f0f0f0;
+  background-image: linear-gradient(135deg, #e6e6e6 0%, #d4d4d4 100%);
 }
 
 .fridge-container {
@@ -21,18 +21,36 @@ body {
 }
 
 .fridge-door {
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  background: linear-gradient(145deg, #e8e8e8, #d8d8d8);
   padding: 3rem;
-  border-radius: 30px;
-  box-shadow: 20px 20px 60px rgba(163, 177, 198, 0.7),
-    -20px -20px 60px rgba(255, 255, 255, 0.8);
-  width: 95%;
-  max-width: 1200px;
+  border-radius: 40px;
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.2),
+    -20px -20px 60px rgba(191, 194, 170, 0.863),
+    inset 2px 2px 4px rgba(165, 141, 141, 0.5),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1100px;
   min-height: 80vh;
   position: relative;
+  border: 2px solid #ccc;
 }
 
-/* Navigation Grid */
+/* Fridge Handle//////////////////////////////////////////////////// */
+.fridge-door::before {
+  content: "";
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 300px;
+  background: linear-gradient(90deg, #806f6f, #e0e0e0);
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation Grid/////////////////////////////////////////////////////// */
 .nav-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -42,6 +60,24 @@ body {
   padding: 1rem;
 }
 
+/* Todo button styling (Notepad look)////////////////////////////////////////////////////// */
+.nav-button:nth-child(1) {
+  background: #fff9c4;
+  border-radius: 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  transform: rotate(1deg);
+}
+.nav-button:nth-child(1)::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 8px;
+  background: #ff4444;
+  border-radius: 3px;
+}
 .nav-button {
   background: #fff;
   color: #2c3e50;
@@ -52,21 +88,23 @@ body {
   transition: all 0.3s ease;
   font-size: 1.4rem;
   border: none;
-  box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
     -8px -8px 16px rgba(255, 255, 255, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
 }
 
 .nav-button:hover {
   transform: translateY(-5px);
-  box-shadow: 12px 12px 20px rgba(163, 177, 198, 0.7),
+  box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.15),
     -12px -12px 20px rgba(255, 255, 255, 0.9);
 }
 
-/* Calendar Styles */
+/* Calendar Styles /////////////////////////////////////////////////////////////////*/
+
 .calendar-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -80,8 +118,9 @@ body {
   padding: 1.5rem;
   border-radius: 16px;
   min-height: 250px;
-  box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.5),
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
     -8px -8px 16px rgba(255, 255, 255, 0.8);
+  border: 1px solid #e0e0e0;
 }
 
 .day-box h3 {
@@ -101,24 +140,61 @@ body {
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
 }
 
 .event-item:hover {
   transform: translateX(5px);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
+.nav-button {
+  position: relative; /* Constrain the ::before element to the .nav-button */
 
-/* Todo List Styles */
+  color: #2c3e50;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.4rem;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: none;
+}
+
+.nav-button:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #ff4444;
+}
+
+/* Todo List Styles/////////////////////////////////////////////////////////// */
 .notepad {
   background: #fff9c4;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
-    -8px -8px 16px rgba(255, 255, 255, 0.8);
+  border-radius: 0;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   margin: 2rem auto;
   transform: rotate(-1deg);
   max-width: 500px;
   position: relative;
+  background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 98%,
+      #ffd700 98%,
+      #ffd700 100%
+    ),
+    linear-gradient(#fff9c4 1.1rem, #ccc 1.2rem);
+  background-size: 100% 1.2rem, 100% 1.2rem;
+  line-height: 1.2rem;
+  padding-top: 1.2rem;
 }
 
 .notepad::before {
@@ -139,9 +215,26 @@ body {
   margin-bottom: 1.5rem;
   font-family: "Comic Sans MS", cursive;
   text-align: center;
+  background: #fff9c4;
+  padding: 0.5rem;
+  margin-top: -0.5rem;
 }
 
-/* Photo Gallery Styles */
+.notepad ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notepad li {
+  margin-bottom: 0.6rem;
+  padding: 0.5rem;
+  background: #fff9c4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Photo Gallery Styles ////////////////////////////////////////////////////////////*/
 .photo-gallery {
   padding: 2rem;
 }
@@ -157,24 +250,25 @@ body {
   background: white;
   padding: 1rem;
   border-radius: 16px;
-  box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
     -8px -8px 16px rgba(255, 255, 255, 0.8);
   transform: rotate(random(-2deg, 2deg));
   transition: all 0.3s ease;
+  border: 8px solid white;
 }
 
 .photo-card:hover {
   transform: scale(1.02) rotate(0deg);
 }
 
-/* Magnet Board Styles */
+/* Magnet Board Styles ///////////////////////////////////////////////////////////////////////////////////////*/
 .magnet-board {
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  background: linear-gradient(145deg, #e8e8e8, #d8d8d8);
   padding: 2rem;
   border-radius: 20px;
   min-height: 600px;
   position: relative;
-  box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.6),
+  box-shadow: inset 8px 8px 16px rgba(0, 0, 0, 0.1),
     inset -8px -8px 16px rgba(255, 255, 255, 0.8);
 }
 
@@ -195,7 +289,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Common Button Styles */
+/* Common Button Styles/////////////////////////////////////////////////////////////// */
 button {
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
@@ -213,7 +307,7 @@ button:hover {
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Input Styles */
+/* Input Styles ///////////////////////////////////////////////////////*/
 input {
   padding: 0.8rem;
   border: 2px solid #e0e0e0;
@@ -228,7 +322,7 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
 }
 
-/* Error Message */
+/* Error Message////////////////////////////////////////////////////////// */
 .error-message {
   background-color: #ffebee;
   color: #c62828;
@@ -236,7 +330,7 @@ input:focus {
   border-radius: 8px;
   margin: 1rem 0;
   text-align: center;
-  box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.4),
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1),
     -4px -4px 8px rgba(255, 255, 255, 0.8);
   animation: shake 0.5s ease-in-out;
 }

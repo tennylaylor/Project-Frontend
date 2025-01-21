@@ -30,7 +30,7 @@ const FridgeHome = () => {
               className="nav-button"
               onClick={() => setActiveComponent("calendar")}
             >
-              📅 Weekly Calendar
+              📅 Calendar
             </button>
             <button
               className="nav-button"
