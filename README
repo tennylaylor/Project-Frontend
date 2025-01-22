@@ -6,70 +6,49 @@ Key Features
 To-Do List:
 
 Add, update, and delete tasks.
-
 Organize tasks with priority levels (low, medium, high).
-
 Tasks are stored in the backend for persistence.
 
 Weekly Calendar:
-
 Plan your week by adding events to specific days.
-
 View, update, and delete events as needed.
-
 Events are grouped by day for easy management.
 
 Photo Gallery:
-
 Upload and display photos.
-
 Add captions and delete photos.
-
 Uses file upload handling for a simple photo manager.
 
 Fridge Home:
-
 A central hub for navigation between the app's features.
-
 Styled like a virtual fridge for a fun and creative user experience.
 
 How It Works
 Frontend:
-
 React is used to build the user interface.
-
 React Hooks manage state efficiently across components.
-
 CSS provides a polished, responsive design with visually appealing styles.
 
 Backend:
-
-Node.js and Express power the server.
-
+Node.js and Express power the server
 MongoDB stores data for tasks and events.
-
 Axios is used for communication between the frontend and backend.
 
 APIs:
 To-Do List API:
-
 GET /api/todos: Fetch all tasks.
-
 POST /api/todos: Add a new task.
-
-PUT /api/todos/:id: Update a task.
-
+PUT /api/todos/:id: Update a task
 DELETE /api/todos/:id: Delete a task.
 
 Weekly Calendar API:
-
-GET /api/calendar: Fetch weekly events.
-
-POST /api/calendar/:day: Add an event to a specific day.
-
+GET /api/calendar: Fetch weekly events
+POST /api/calendar/:day: Add an event to a specific day
 DELETE /api/calendar/:day/:eventId: Delete an event.
 
 Clone the repository:
+Backend: https://github.com/tennylaylor/Project_Backend.git
+
 git clone
 cd Family_Fridge
 
