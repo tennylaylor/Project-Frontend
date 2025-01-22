@@ -79,6 +79,18 @@ const Magnets = ({ onBack }) => {
     setNewMagnetText("");
   };
 
+  // Delete a magnet
+  const handleDeleteMagnet = (id) => {
+    fetch(`/api/magnets/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() =>
+        setMagnets((prevMagnets) => prevMagnets.filter((m) => m._id !== id))
+      )
+      .catch((error) => console.error("Failed to delete magnet:", error));
+  };
+
   // Handle edit click
   const handleEditClick = (id, currentText) => {
     setEditMagnetId(id);
@@ -197,7 +209,20 @@ const Magnets = ({ onBack }) => {
                   }}
                   onClick={() => handleEditClick(magnet._id, magnet.text)}
                 >
-                  Edit
+                  ++
+                </button>
+                <button
+                  style={{
+                    backgroundColor: "gray",
+                    color: "white",
+                    fontSize: "8px",
+                    padding: "2px 5px",
+                    borderRadius: "3px",
+                    marginLeft: "10px",
+                  }}
+                  onClick={() => handleDeleteMagnet(magnet._id)}
+                >
+                  --
                 </button>
               </>
             )}

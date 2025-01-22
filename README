@@ -1,0 +1,86 @@
+Interactive Fridge Application
+Overview
+The Interactive Fridge is a fun and practical web application that combines tools for daily productivity, like a to-do list and a weekly calendar, with creative features like photo management. Built with the MERN stack (MongoDB, Express, React, Node.js), this project serves as a demonstration of my full-stack development skills.
+
+Key Features
+To-Do List:
+
+Add, update, and delete tasks.
+
+Organize tasks with priority levels (low, medium, high).
+
+Tasks are stored in the backend for persistence.
+
+Weekly Calendar:
+
+Plan your week by adding events to specific days.
+
+View, update, and delete events as needed.
+
+Events are grouped by day for easy management.
+
+Photo Gallery:
+
+Upload and display photos.
+
+Add captions and delete photos.
+
+Uses file upload handling for a simple photo manager.
+
+Fridge Home:
+
+A central hub for navigation between the app's features.
+
+Styled like a virtual fridge for a fun and creative user experience.
+
+How It Works
+Frontend:
+
+React is used to build the user interface.
+
+React Hooks manage state efficiently across components.
+
+CSS provides a polished, responsive design with visually appealing styles.
+
+Backend:
+
+Node.js and Express power the server.
+
+MongoDB stores data for tasks and events.
+
+Axios is used for communication between the frontend and backend.
+
+APIs:
+To-Do List API:
+
+GET /api/todos: Fetch all tasks.
+
+POST /api/todos: Add a new task.
+
+PUT /api/todos/:id: Update a task.
+
+DELETE /api/todos/:id: Delete a task.
+
+Weekly Calendar API:
+
+GET /api/calendar: Fetch weekly events.
+
+POST /api/calendar/:day: Add an event to a specific day.
+
+DELETE /api/calendar/:day/:eventId: Delete an event.
+
+Clone the repository:
+git clone
+cd Family_Fridge
+
+install Dependencies
+cd frontend
+npm install
+
+Backend:
+cd backend
+npm install
+
+Start Application
+backend: npx nodemon server.js
+frontend: npm run dev
