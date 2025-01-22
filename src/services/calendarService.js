@@ -7,3 +7,5 @@ export const addWeeklyEvent = (day, event) =>
   axios.post(`${API_URL}/${day}`, event);
 export const deleteWeeklyEvent = (day, eventId) =>
   axios.delete(`${API_URL}/${day}/${eventId}`);
+export const updateWeeklyEvent = (day, eventId, updatedEvent) =>
+  axios.put(`${API_URL}/${day}/${eventId}`, updatedEvent);
