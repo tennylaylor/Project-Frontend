@@ -3,6 +3,9 @@ import TodoList from "./TodoList";
 import WeeklyCalendar from "./WeeklyCalendar";
 import Magnets from "./Magnets";
 import Photo from "./Photo";
+import AboutPage from "./AboutPage";
+import DescriptionPage from "./DescriptionPage";
+import ContactPage from "./ContactPage";
 
 const FridgeHome = () => {
   const [activeComponent, setActiveComponent] = React.useState("home");
@@ -17,6 +20,12 @@ const FridgeHome = () => {
         return <Magnets onBack={() => setActiveComponent("home")} />;
       case "photos":
         return <Photo onBack={() => setActiveComponent("home")} />;
+      case "about":
+        return <AboutPage onBack={() => setActiveComponent("home")} />;
+      case "description":
+        return <DescriptionPage onBack={() => setActiveComponent("home")} />;
+      case "contact":
+        return <ContactPage onBack={() => setActiveComponent("home")} />;
       default:
         return (
           <div className="nav-grid">
@@ -43,6 +52,24 @@ const FridgeHome = () => {
               onClick={() => setActiveComponent("photos")}
             >
               📸 Photos
+            </button>
+            <button
+              className="nav-button"
+              onClick={() => setActiveComponent("about")}
+            >
+              📖 About
+            </button>
+            <button
+              className="nav-button"
+              onClick={() => setActiveComponent("description")}
+            >
+              📜 Description
+            </button>
+            <button
+              className="nav-button"
+              onClick={() => setActiveComponent("contact")}
+            >
+              📧 Contact
             </button>
           </div>
         );
